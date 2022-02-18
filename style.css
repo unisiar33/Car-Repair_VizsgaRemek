@@ -1,0 +1,61 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    overflow-x: hidden;
+    background-color: #4c4e50;
+    margin:none;
+}
+
+.bgimage{
+    background-position: center;
+    background-size:cover ;
+}
+.car1{
+    background-image: url('Images/audi-rs-6-avant-2019.jpg');
+}
+
+.car2{
+    background-image: url('Images/audi-etron.jpg');
+}
+
+.car3{
+    background-image: url('Images/audi\ s8.jpg');
+}
+.car4{
+    background-image: url('Images/audi.jpg');
+}
+.car5{
+    background-image: url('Images/interior.jpg');
+}
+.car6{
+    background-image: url('Images/service-hall.jpg');
+}
+.car7{
+    background-image: url('Images/a5.jpg');
+}
+
+.kartya{
+    width:20%;
+    height:95%;
+}
+
+video{
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 160%;
+    overflow-x: hidden;
+    position: absolute;
+    z-index: -1;
+}
+.login{
+    position: relative;
+    top:40%;
+    width:300px;
+    height:40%;
+    border-radius: 5px;
+}
