@@ -52,10 +52,21 @@ video{
     position: absolute;
     z-index: -1;
 }
-.login{
-    position: relative;
-    top:40%;
-    width:300px;
-    height:40%;
-    border-radius: 5px;
+
+.simple{
+    max-height: 100vh;
+    overflow: hidden;
+    background-color:black;
+}
+
+.bg-form{
+    border-radius: 20px;
+    background: rgba(175, 177, 176, 0.3)
+}
+.halfH{
+    height:50vh ;
+    overflow: hidden;
+}
+.image{
+    object-fit: cover;
 }

@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="style.css">
   <title>Car Repair || LOGIN</title>
 </head>
-<body>
+<body class="simple">
   <header>
 
     <!--Navigation section -->
@@ -52,20 +52,37 @@
     </nav>
 
   <!--End of the navigation-->  
-  <!--Start of Login form-->
+  <!--Background video-->
   <video  size="cover" autoplay loop  muted src="Images/Audi R8 - Reveal Teaser Commercial.mp4"></video>
-  <div class="container-fluid h-100 d-flex justify-content-center align-content-center">
-    <div class="bg-light opacity-50 login">
-      <div class="mb-3 w-75 text-center mx-auto" >
-        <label for="exampleFormControlInput1" class="form-label ">Email address</label>
-        <input type="email" class="form-control" id="exampleFormControlInput1 mx-auto" placeholder="name@example.com">
-      </div>
-      <div class="mb-3 w-75 text-center mx-auto">
-        <label for="exampleFormControlInput1" class="form-label mx-auto">Password</label>
-        <input type="password" class="form-control" id="exampleFormControlInput1 mx-auto" placeholder="*****************">
-      </div>
+  
+<!--Start of Login form-->
+
+
+<div class="container h-100  w-50 d-flex justify-content-center align-items-center flex-column  ">
+  <div class="row w-100">
+    <div class=" col w-100 text-center">
+      <form  class=" d-flex justify-content-center align-items-center flex-column bg-form w-100 pb-5"  action="">
+        <a  class="text-white"style="font-size: 2rem; text-decoration: none;"href="#" ><span class="text-danger "> Car </span> Repair</a>
+        <h1>Login</h2>
+          <div class="mb-3 m-2 w-75 text-danger">
+            <label for="exampleFormControlInput1" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+          </div>
+          <div class="mb-3 m-2 w-75 text-danger ">
+            <label for="exampleFormControlTextarea1" class="form-label">Password</label>
+            <input type="password" class="form-control"  placeholder="*********" >
+          </div>
+          <button class="btn btn-danger text-white">Login</button>
+       </form>
     </div>
   </div>
+</div>
+
+  <!--End of Login form-->
+  
+  
+  
+  
   
   
 
