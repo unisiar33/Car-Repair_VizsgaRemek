@@ -18,8 +18,9 @@ document.getElementById("button").onclick = function (e) {
         })
         .then(json => {
             sessionStorage.token = json.token
-            document.getElementById("uzenet").innerHTML = json.message
-            if (ok) document.location = "index.html"
+            
+            if (document.getElementById("name").value=="Admin") document.location = "admin.html";
+            else document.location="user.html";
         })
         .catch(err => console.log(err));
 }

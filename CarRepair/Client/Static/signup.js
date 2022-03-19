@@ -15,8 +15,15 @@ document.getElementById("button").onclick = function (e) {
             "password": document.getElementById("password").value
         })
     })
-        .then((response) => response.json())
-        .then(json => alert(json.message))
+        
+        .then((response) => {
+            ok = response.ok
+            return response.json()    
+        })
+        .then(json => {
+            document.getElementById("uzenet").innerHTML = json.message
+            if (ok) document.location = "success.html"
+        })
         .catch(err => console.log(err));
       
 }

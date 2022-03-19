@@ -9,7 +9,8 @@ app.use(cors());
 
 
 const bcrypt = require("bcrypt");
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+const { response } = require('express');
 
 var pool = mysql.createPool({
     host: 'localhost',
@@ -37,14 +38,16 @@ app.post('/reg', function(req, res) {
                 pool.query(q2, [name,city,street,email,telephone, hash],
                     function (error, result) {
                         if (!error) {
+                            
+                            res.status(201).send({ message: "Sikeres regisztráció" })
                             res.send(result);
+
                         } else {
                             res.send(error);
                         }
                     });
             }
         });
-        res.sendFile('login.html');  
 })
 
 // bejelentkezés
@@ -66,8 +69,10 @@ app.post("/login", function (req, res) {
             }
         }
     )
-    res.redirect('signup.html');
+
 })
+
+
 
 
 // token ellenőrzése middleware-rel (forma: BEARER token)
