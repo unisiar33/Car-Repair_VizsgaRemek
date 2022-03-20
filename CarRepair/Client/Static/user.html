@@ -62,52 +62,51 @@
                         <div class=" h-50 tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                           <form class="row g-3">
                             <div class="col-md-6">
-                              <label for="inputEmail4" class="form-label">Email</label>
-                              <input type="email" class="form-control" id="inputEmail4">
+                              <label class="form-label">Vendor</label>
+                              <input type="text" class="form-control" id="vendor" name="vendor">
                             </div>
                             <div class="col-md-6">
-                              <label for="inputPassword4" class="form-label">Password</label>
-                              <input type="password" class="form-control" id="inputPassword4">
+                              <label class="form-label">Type</label>
+                              <input type="text" class="form-control" id="Type" name="Type">
+                            </div>
+                            <div class="col-md-3">
+                              <label class="form-label">License Plate</label>
+                              <input type="text" class="form-control" id="LicensePlate" name="LicensePlate">
+                            </div>
+                            <div class="col-md-3">
+                              <label class="form-label">Cubic Capacity</label>
+                              <input type="number" class="form-control" id="CubicCapacity" name="CubicCapacity">
+                            </div>
+                            <div class="col-md-3">
+                              <label class="form-label">Power</label>
+                              <input type="number" class="form-control" id="Power" name="Power">
+                            </div>
+                            <div class="col-md-3">
+                              <label class="form-label">Fuel</label>
+                              <input type="text" class="form-control" id="Fuel" name="Fuel">
                             </div>
                             <div class="col-12">
-                              <label for="inputAddress" class="form-label">Address</label>
-                              <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                              <label class="form-label">VIN Number</label>
+                              <input type="text" class="form-control" id="vinnumber" name="Vinnummber">
                             </div>
                             <div class="col-12">
-                              <label for="inputAddress2" class="form-label">Address 2</label>
-                              <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-                            </div>
-                            <div class="col-md-6">
-                              <label for="inputCity" class="form-label">City</label>
-                              <input type="text" class="form-control" id="inputCity">
-                            </div>
-                            <div class="col-md-4">
-                              <label for="inputState" class="form-label">State</label>
-                              <select id="inputState" class="form-select">
-                                <option selected>Choose...</option>
-                                <option>...</option>
-                              </select>
-                            </div>
-                            <div class="col-md-2">
-                              <label for="inputZip" class="form-label">Zip</label>
-                              <input type="text" class="form-control" id="inputZip">
-                            </div>
-                            <div class="col-12">
-                              <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="gridCheck">
-                                <label class="form-check-label" for="gridCheck">
-                                  Check me out
-                                </label>
-                              </div>
-                            </div>
-                            <div class="col-12">
-                              <button type="submit" class="btn btn-primary">Sign in</button>
+                              <button type="submit" class="btn btn-danger">Add Car</button>
                             </div>
                           </form>  
     
                         </div>
                         <div class=" h-50 tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                          <table class="table">
+                         
+                         
+                          <div class="col-md-8">
+                            <label class="form-label">Selected car</label>
+                            <select class="col-md-8" name="car" id="car">
+                              <option value="1.">1.Car</option>
+                              <option value="2.">2.Car</option>
+                            </select>
+                          </div>
+                          <div class="col-md-8">
+                           <table class="table">
                             <thead>
                               <tr>
                                 <th scope="col">#</th>
@@ -144,6 +143,7 @@
                               </tr>
                             </tbody>
                           </table>
+                        </div>
                         </div>
                              
                       </div>

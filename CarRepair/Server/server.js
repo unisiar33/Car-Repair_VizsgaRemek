@@ -74,10 +74,9 @@ app.post("/login", function (req, res) {
 
 
 
-
 // token ellenőrzése middleware-rel (forma: BEARER token)
 function authenticateToken(req, res, next) {
-    const authHeader = req.headers['authorization']
+    const authHeader = req.headers['Authorization']
     const token = authHeader && authHeader.split(' ')[1]
     if (!token) 
         return res.status(401).send({message: "Azonosítás szükséges!"})
@@ -89,4 +88,21 @@ function authenticateToken(req, res, next) {
     })
 }
 
+
+
+
+
+//user adatai
+app.get("/user", authenticateToken, function (req, res) {
+    const q = "SELECT userid "
+            + "FROM clients WHERE name=?";
+    pool.query(q, [req.user.name], function (error, results) {
+        if (!error) {
+            res.send(results);
+        } else {
+            res.send(error);
+        }
+    });
+});
 app.listen(5050, () => console.log("Server started on port 5050"))
+
