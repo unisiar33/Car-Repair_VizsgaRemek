@@ -76,7 +76,7 @@ app.post("/login", function (req, res) {
 
 // token ellenőrzése middleware-rel (forma: BEARER token)
 function authenticateToken(req, res, next) {
-    const authHeader = req.headers['Authorization']
+    const authHeader = req.headers['authorization']
     const token = authHeader && authHeader.split(' ')[1]
     if (!token) 
         return res.status(401).send({message: "Azonosítás szükséges!"})
@@ -94,7 +94,7 @@ function authenticateToken(req, res, next) {
 
 //user adatai
 app.get("/user", authenticateToken, function (req, res) {
-    const q = "SELECT userid "
+    const q = "SELECT name, city,street,telephone,email "
             + "FROM clients WHERE name=?";
     pool.query(q, [req.user.name], function (error, results) {
         if (!error) {
@@ -104,5 +104,32 @@ app.get("/user", authenticateToken, function (req, res) {
         }
     });
 });
+
+
+
+// Auto hozzáadása
+
+app.post("/fleet", authenticateToken, function (req, res) {
+    const q = "INSERT INTO fleet (userid, vendor, type, licenseplate, vinnumber,fuel,cubiccapacity,power) "
+            + "VALUES(?,?,?,?,?,?,?,?)"
+    pool.query(q, 
+        [req.user.userid,
+        req.body.vendor,
+        req.body.type,
+        req.body.licenseplate,
+        req.body.vinnumber,
+        req.body.fuel,
+        req.body.cubiccapacity,
+        req.body.power],
+        function (error, results) {
+        if (!error) {
+            res.send(results);
+        } else {
+            res.send(error);
+        }
+    });
+})
+
+
 app.listen(5050, () => console.log("Server started on port 5050"))
 

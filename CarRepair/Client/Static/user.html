@@ -26,7 +26,7 @@
         <div class="collapse  navbar-collapse justify-content-end" id="navbarSupportedContent">
           <ul class="nav justify-content-center  ">
             <li class="nav-item ">
-                <button class="btn btn-danger text-white">Logout</button>
+                <a type="button" onclick="logout()" class="btn btn-danger text-white">Logout</a>
               </li>
           </ul>
         </div>
@@ -42,8 +42,11 @@
                 <div class="card" style="width: 18rem;">
                     
                     <div class="card-body">
-                      <h5 class="card-title" id="username">Card title</h5>
-                      <p class="card-text" id="address">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <h4 class="card-title" id="username"></h5>
+                      <p class="card-text" id="Address1"></p> 
+                      <p class="card-text" id="Address2"></p>
+                      <p class="card-text" id="Telephone"></p>
+                      <p class="card-text" id="Email"></p>
                     </div>
                   </div>
               </div>
@@ -60,7 +63,7 @@
                       </ul>
                       <div class="tab-content" id="myTabContent">
                         <div class=" h-50 tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                          <form class="row g-3">
+                          <form action="/fleet" method="POST" class="row g-3">
                             <div class="col-md-6">
                               <label class="form-label">Vendor</label>
                               <input type="text" class="form-control" id="vendor" name="vendor">
@@ -90,7 +93,7 @@
                               <input type="text" class="form-control" id="vinnumber" name="Vinnummber">
                             </div>
                             <div class="col-12">
-                              <button type="submit" class="btn btn-danger">Add Car</button>
+                              <button id="addCar" type="submit" class="btn btn-danger">Add Car</button>
                             </div>
                           </form>  
     
@@ -158,6 +161,7 @@
 
 
   
-
+<script src="user.js">
+</script>
 </body>
 </html>
