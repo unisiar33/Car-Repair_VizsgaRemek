@@ -1,4 +1,4 @@
-document.getElementById("button").onclick = function (e) {
+document.getElementById("button").onclick  = function (e) {
     e.preventDefault();
     const url = 'http://localhost:5050/reg';
     fetch(url, {

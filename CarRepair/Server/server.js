@@ -1,23 +1,20 @@
-require('dotenv').config();
 const express = require("express");
-const mysql = require('mysql');
 const app = express();
 app.use(express.json());
-app.use(express.urlencoded({extended:true}));
 const cors = require("cors");
 app.use(cors());
-
+require('dotenv').config();
 
 const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
-const { response } = require('express');
 
+const mysql = require('mysql');
 var pool = mysql.createPool({
-    host: 'localhost',
-    port: 3306,
-    user: 'root',
-    password: '',
-    database: 'carrepair'
+    host: process.env.HOST,
+    port:process.env.PORT,
+    user: process.env.USER,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE
 });
 
 
@@ -110,17 +107,17 @@ app.get("/user", authenticateToken, function (req, res) {
 // Auto hozzáadása
 
 app.post("/fleet", authenticateToken, function (req, res) {
-    const q = "INSERT INTO fleet (userid, vendor, type, licenseplate, vinnumber,fuel,cubiccapacity,power) "
+    const q = "INSERT INTO fleet (userid, Vendor, type, licenseplate, vin_number,fuel,cubiccapacity,power) "
             + "VALUES(?,?,?,?,?,?,?,?)"
     pool.query(q, 
         [req.user.userid,
         req.body.vendor,
-        req.body.type,
-        req.body.licenseplate,
-        req.body.vinnumber,
-        req.body.fuel,
-        req.body.cubiccapacity,
-        req.body.power],
+        req.body.Type,
+        req.body.LicensePlate,
+        req.body.VIN_number,
+        req.body.Fuel,
+        req.body.CubicCapacity,
+        req.body.Power],
         function (error, results) {
         if (!error) {
             res.send(results);

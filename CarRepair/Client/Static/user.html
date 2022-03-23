@@ -1,3 +1,4 @@
+
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -63,7 +64,7 @@
                       </ul>
                       <div class="tab-content" id="myTabContent">
                         <div class=" h-50 tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                          <form action="/fleet" method="POST" class="row g-3">
+                          <form  action="/fleet" method="POST" id="addCarForm"class="row g-3">
                             <div class="col-md-6">
                               <label class="form-label">Vendor</label>
                               <input type="text" class="form-control" id="vendor" name="vendor">
@@ -86,17 +87,41 @@
                             </div>
                             <div class="col-md-3">
                               <label class="form-label">Fuel</label>
-                              <input type="text" class="form-control" id="Fuel" name="Fuel">
+                              <select class="form-select" aria-label="Default select example" name="Fuel" id="Fuel">
+                                <option value="Gasoline">Gasoline</option>
+                                <option value="Diesel">Diesel</option>
+                                <option value="Electric">Electric</option>
+                                <option value="LPG">LPG</option>
+                              </select>
                             </div>
                             <div class="col-12">
                               <label class="form-label">VIN Number</label>
-                              <input type="text" class="form-control" id="vinnumber" name="Vinnummber">
+                              <input type="text" class="form-control" id="VIN_number" name="VIN_number">
                             </div>
                             <div class="col-12">
-                              <button id="addCar" type="submit" class="btn btn-danger">Add Car</button>
+                              <button type="button"  data-toggle="modal" data-target="#exampleModalCenter" id="buttonCar"  class="btn btn-danger">Add Car</button>
                             </div>
+                          
                           </form>  
-    
+                          <!-- Modal -->
+                                  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title" id="exampleModalLongTitle">Adding a car</h5>
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                        </div>
+                                        <div class="modal-body">
+                                          You have successfully add a car to your fleet.
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> 
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
                         </div>
                         <div class=" h-50 tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                          

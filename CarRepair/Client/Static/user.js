@@ -13,20 +13,20 @@ function betolt() {
         .then((response) => response.json())
         .then(json => {
             let user = json[0]
-            document.getElementById("username").innerHTML ="Welcome "+ user.name;
-            document.getElementById("Address1").innerHTML ="City: "+ user.city
-            document.getElementById("Address2").innerHTML ="Street: "+ user.street
-            document.getElementById("Telephone").innerHTML="Telephone: "+ user.telephone
-            document.getElementById("Email").innerHTML ="Email: "+user.email
+            document.getElementById("username").innerHTML ="<b>Welcome</b> "+ user.name;
+            document.getElementById("Address1").innerHTML ="<b>City: </b>"+ user.city
+            document.getElementById("Address2").innerHTML ="<b>Street: </b>"+ user.street
+            document.getElementById("Telephone").innerHTML="<b>Telephone: </b>"+ user.telephone
+            document.getElementById("Email").innerHTML ="<b>Email: </b>"+user.email
         })
         .catch(err => console.log(err));
 }
 
 
-document.getElementById("addCar").onclick = function (e) {
+document.getElementById("buttonCar").onclick= function(e) {
     e.preventDefault();
-    let ok = false
     const url = 'http://localhost:5050/fleet';
+    const token = 'Bearer: ' + sessionStorage.token
     fetch(url, {
         method: 'POST',
         headers: {
@@ -34,22 +34,22 @@ document.getElementById("addCar").onclick = function (e) {
             'Authorization': token
         },
         body: JSON.stringify({
-            "userid": user.userid,
-            "Vendor": document.getElementById("vendor").value,
+            "vendor": document.getElementById("vendor").value,
             "Type": document.getElementById("Type").value,
-            "Licenseplate": document.getElementById("Licenseplate").value,
-            "VinNumber": document.getElementById("Vinnumber").value,
+            "LicensePlate": document.getElementById("LicensePlate").value,
+            "VIN_number": document.getElementById("VIN_number").value,
             "Fuel":document.getElementById("Fuel").value,
             "CubicCapacity":document.getElementById("CubicCapacity").value,
             "Power":document.getElementById("Power").value
         })
     })
         .then((response) => {
-            ok = response.ok
-            return response.json()    
+            return response.json()
         })
+       
         
         .catch(err => console.log(err));
+        document.getElementById("addCarForm").reset();
 }
 
 
