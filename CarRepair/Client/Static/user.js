@@ -1,8 +1,9 @@
 
 const token = 'Bearer: ' + sessionStorage.token
-betolt()
+load()
 
-function betolt() {
+
+function load() {
     const url = 'http://localhost:5050/user'
     fetch(url, {
         method: 'GET',
@@ -23,9 +24,35 @@ function betolt() {
 }
 
 
-document.getElementById("buttonCar").onclick= function(e) {
+document.getElementById("profile-tab").onclick= function(e) {
     e.preventDefault();
     const url = 'http://localhost:5050/fleet';
+    const table = document.getElementById("cars");
+    const token = 'Bearer: ' + sessionStorage.token
+    fetch(url, {
+        method: 'GET',
+        headers: {
+            'Authorization': token
+        }
+    })
+        .then((response) => response.json())
+        .then(json => {
+            table.innerHTML = "<tr><th>Vendor</th><th>Type</th><th>License Plate</th><th>VIN Number</th><th>Fuel</th><th>Power</th><th>Delete</th></tr>";
+            json.forEach(car => {
+                table.innerHTML += "<tr><td>" + car.vendor + "</td><td>" + car.Type + "</td>"
+                    + "</td><td>" + car.LicensePlate + "</td><td>" + car.VIN_number + "</td><td>" + car.Fuel + "</td><td>" + car.Power + "</td>"
+                    + '<td><button class="button btn btn-danger text-white" '
+                    + 'onclick="torol()">Delete</button></td></tr>'
+            });
+        })
+        .catch(err => console.log(err));
+}
+
+
+
+document.getElementById("buttonCar").onclick= function(e) {
+    e.preventDefault();
+    const url = 'http://localhost:5050/addcar';
     const token = 'Bearer: ' + sessionStorage.token
     fetch(url, {
         method: 'POST',

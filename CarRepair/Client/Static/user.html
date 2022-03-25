@@ -58,13 +58,13 @@
                           <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Add Car</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                          <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">E Service </button>
+                          <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Fleet</button>
                         </li>
                         
                       </ul>
                       <div class="tab-content" id="myTabContent">
-                        <div class=" h-50 tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                          <form  action="/fleet" method="POST" id="addCarForm"class="row g-3">
+                        <div class="  h-50 tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                          <form  action="/addcar" method="POST" id="addCarForm"class="row g-3">
                             <div class="col-md-6">
                               <label class="form-label">Vendor</label>
                               <input type="text" class="form-control" id="vendor" name="vendor">
@@ -102,76 +102,16 @@
                               <button type="button"  data-toggle="modal" data-target="#exampleModalCenter" id="buttonCar"  class="btn btn-danger">Add Car</button>
                             </div>
                           
-                          </form>  
-                          <!-- Modal -->
-                                  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                      <div class="modal-content">
-                                        <div class="modal-header">
-                                          <h5 class="modal-title" id="exampleModalLongTitle">Adding a car</h5>
-                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                          </button>
-                                        </div>
-                                        <div class="modal-body">
-                                          You have successfully add a car to your fleet.
-                                        </div>
-                                        <div class="modal-footer">
-                                          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> 
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
+                          </form>         
                         </div>
                         <div class=" h-50 tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                           <table class="table col-lg-12 table-striped">
+                                <tbody id="cars">
+                                    
+                                </tbody>
+                           </table>
                          
                          
-                          <div class="col-md-8">
-                            <label class="form-label">Selected car</label>
-                            <select class="col-md-8" name="car" id="car">
-                              <option value="1.">1.Car</option>
-                              <option value="2.">2.Car</option>
-                            </select>
-                          </div>
-                          <div class="col-md-8">
-                           <table class="table">
-                            <thead>
-                              <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">3</th>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>@twitter</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
                         </div>
                              
                       </div>

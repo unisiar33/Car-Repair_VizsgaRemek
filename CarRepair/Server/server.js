@@ -106,7 +106,7 @@ app.get("/user", authenticateToken, function (req, res) {
 
 // Auto hozzáadása
 
-app.post("/fleet", authenticateToken, function (req, res) {
+app.post("/addcar", authenticateToken, function (req, res) {
     const q = "INSERT INTO fleet (userid, Vendor, type, licenseplate, vin_number,fuel,cubiccapacity,power) "
             + "VALUES(?,?,?,?,?,?,?,?)"
     pool.query(q, 
@@ -126,6 +126,19 @@ app.post("/fleet", authenticateToken, function (req, res) {
         }
     });
 })
+
+// Autó flota 
+
+app.get("/fleet", authenticateToken, function (req, res) {
+    const q = "SELECT  vendor,Type,LicensePlate,VIN_number,Fuel,Power FROM Fleet where userid=?";
+    pool.query(q,[req.user.userid], function (error, results) {
+        if (!error) {
+            res.send(results);
+        } else {
+            res.send(error);
+        }
+    });
+});
 
 
 app.listen(5050, () => console.log("Server started on port 5050"))
