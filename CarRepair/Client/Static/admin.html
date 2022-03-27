@@ -27,7 +27,7 @@
         <div class="collapse  navbar-collapse justify-content-end" id="navbarSupportedContent">
           <ul class="nav justify-content-center  ">
             <li class="nav-item ">
-                <button class="btn btn-danger text-white">Logout</button>
+                <button onclick="logout()" class="btn btn-danger text-white">Logout</button>
               </li>
           </ul>
         </div>
@@ -36,111 +36,95 @@
 
   <!--End of the navigation-->  
   <!--Main-->
-  <main class=" h-100 ">
-      <div class="h-100 container d-flex">
-          <div class="row d-flex align-items-center">
-              <div class="align-self-center">
-                <ul class="nav nav-tabs " id="myTab" role="tablist">
+  <main class="h-100 w-100">
+      <div class="h-100  container-fluid col-lg-12 w-100 d-flex ">
+          <div class="row d-flex align-items-center justify-content-center ">
+              <div class="col-lg-12 align-self-center justify-content-center">
+                <ul class="nav nav-tabs  " id="myTab" role="tablist">
                     <li class="nav-item " role="presentation">
-                      <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Tickets</button>
+                      <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Live Tickets</button>
                     </li>
+                    
                     <li class="nav-item" role="presentation">
-                      <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">New Ticket</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Worksheet fill</button>
+                        <button class="nav-link" id="profile-tab2" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Worksheet</button>
                     </li>
                   </ul>
                   <div class="tab-content" id="myTabContent">
                     <div class=" h-50 tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                      <table class="table">
-                        <thead>
-                          <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">3</th>
-                            <td colspan="2">Larry the Bird</td>
-                            <td>@twitter</td>
-                          </tr>
+                      <table class="table  table-striped ">
+                        <tbody id="livetickets">
+                          
                         </tbody>
                       </table>
 
                     </div>
                     <div class=" h-50 tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                      <form class="row g-3">
-                        <div class="col-md-6">
-                          <label for="inputEmail4" class="form-label">Email</label>
-                          <input type="email" class="form-control" id="inputEmail4">
+                      <form id="worksheetForm" class="row g-3">
+                        <div class="col-md-3">
+                          <label for="Ticketnumber" class="form-label">Ticket Number</label>
+                          <input type="number" class="form-control" id="Ticketnumber" placeholder="Ticket No.">
                         </div>
-                        <div class="col-md-6">
-                          <label for="inputPassword4" class="form-label">Password</label>
-                          <input type="password" class="form-control" id="inputPassword4">
+                        <div class="col-md-3">
+                          <label for="startDate" class="form-label">Start</label>
+                          <input type="date" class="form-control" id="startDate" placeholder="Date">
                         </div>
-                        <div class="col-12">
-                          <label for="inputAddress" class="form-label">Address</label>
-                          <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                        <div class="col-md-3">
+                          <label for="endDate" class="form-label">End</label>
+                          <input type="date" class="form-control" id="endDate" placeholder="Dete">
                         </div>
-                        <div class="col-12">
-                          <label for="inputAddress2" class="form-label">Address 2</label>
-                          <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                        <div class="col-md-3">
+                          <label for="Workhour" class="form-label">Workhour</label>
+                          <input type="number" class="form-control" id="Workhour" placeholder="Workhour">
                         </div>
-                        <div class="col-md-6">
-                          <label for="inputCity" class="form-label">City</label>
-                          <input type="text" class="form-control" id="inputCity">
-                        </div>
-                        <div class="col-md-4">
-                          <label for="inputState" class="form-label">State</label>
-                          <select id="inputState" class="form-select">
+                        <div class="col-md-3">
+                          <label for="jobType" class="form-label">Job Type</label>
+                          <select id="jobType" class="form-select">
                             <option selected>Choose...</option>
-                            <option>...</option>
+                            <option value="MOT">MOT</option>
+                            <option value="General mechanics">General mechanics</option>
+                            <option value="General electronics">General electronics</option>
+                            <option value="Tyre change">Tyre change</option>
                           </select>
                         </div>
-                        <div class="col-md-2">
-                          <label for="inputZip" class="form-label">Zip</label>
-                          <input type="text" class="form-control" id="inputZip">
+                        <div class="col-md-3">
+                          <label for="Mileage" class="form-label">Mileage</label>
+                          <input type="number" class="form-control" id="Mileage" placeholder="Mileage">
+                        </div>
+                        <div class="col-md-3">
+                          <label for="Technican class="form-label">Service Technician</label>
+                          <select id="Technician" class="form-select">
+                            <option selected>Choose...</option>
+                            <option value="Eng. Thomas Doll">Eng. Thomas Doll</option>
+                            <option value="Bill Right">Bill Right</option>
+                            <option value="Joe Cocker">Joe Cocker</option>
+                            <option value="Kurt Alfredson">Kurt Alfredson</option>
+                          </select>
                         </div>
                         <div class="col-12">
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="gridCheck">
-                            <label class="form-check-label" for="gridCheck">
-                              Check me out
-                            </label>
-                          </div>
+                          <label for="Problem" class="form-label">Required job</label>
+                          <input type="text" class="form-control" id="Problem" placeholder="Problems, errors reported by Client">
                         </div>
                         <div class="col-12">
-                          <button type="submit" class="btn btn-primary">Sign in</button>
+                          <label for="Job" class="form-label">Resolvation</label>
+                          <input type="text" class="form-control" id="Job" placeholder="Resolved job">
+                        </div>
+                        <div class="col-md-6">
+                          <label for="Parts" class="form-label">Parts</label>
+                          <input type="text" class="form-control" id="Parts">
+                        </div>
+                        <div class="col-md-6">
+                          <label for="Total_Charge" class="form-label">Total Charge</label>
+                          <input type="number" class="form-control" id="Total_Charge">
+                        </div>
+                        <div class="col-12">
+                          <button type="button"  data-toggle="modal" data-target="#exampleModalCenter" id="buttonTicket"  class="btn btn-danger">Add Car</button>
                         </div>
                       </form>  
+                      
 
 
                     </div>
-                         <div class=" h-50 tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                         <div class=" h-50 tab-pane fade" id="profile2" role="tabpanel" aria-labelledby="profile-tab2">
                           <form class="row g-3">
                             <div class="col-md-6">
                               <label for="inputEmail4" class="form-label">Email</label>
@@ -200,6 +184,6 @@
 
 
   
-
+<script src="admin.js"></script>
 </body>
 </html>

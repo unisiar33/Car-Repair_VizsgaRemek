@@ -1,0 +1,45 @@
+const q = "INSERT INTO worksheet (ticketid,Jstatus, dateStart, dateEnd, workhours,jobType,mileage,mechanic,Problem,jobDone,Parts,TotalSum) "
+            + "VALUES(?,?,?, ?,?,? ,?,?,?, ?,?,?)"
+    pool.query(q, 
+        [req.body.Ticketnumber,
+        "1",
+        req.body.startDate,
+        req.body.endDate,
+        req.body.Workhour,
+        req.body.jobType,
+        req.body.Mileage,
+        req.body.Technician,
+        req.body.Problem,
+        req.body.Job,
+        req.body.Parts,
+        req.body.Total_Charge
+    ],
+
+
+
+
+
+
+, dateStart=?, dateEnd=?, workhours=?,jobType=?,mileage=?,mechanic=?,Problem=?,jobDone=?,Parts=?,TotalSum=?
+
+
+
+
+
+
+
+
+
+body: JSON.stringify({
+            "Ticketnumber": document.getElementById("Ticketnumber").value,
+            "startDate": document.getElementById("startDate").value,
+            "endDate": document.getElementById("endDate").value,
+            "Workhour": document.getElementById("Workhour").value,
+            "jobType":document.getElementById("jobType").value,
+            "Mileage":document.getElementById("Mileage").value,
+            "Technician":document.getElementById("Technician").value,
+            "Problem":document.getElementById("Problem").value,
+            "Job":document.getElementById("Job").value,
+            "Parts":document.getElementById("Parts").value,
+            "Total_Charge":document.getElementById("Total_Charge").value
+        })

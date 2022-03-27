@@ -37,8 +37,8 @@
   <!--End of the navigation-->  
   <!--Main-->
   <main class=" h-100 ">
-      <div class="h-100 container d-flex">
-          <div class="row d-flex align-items-center justify-content-center">
+      <div class="h-100 container-fluid d-flex">
+          <div class="row w-100  d-flex align-items-center justify-content-center">
               <div class="col-lg-4 d-flex align-items-center justify-content-center">
                 <div class="card" style="width: 18rem;">
                     
@@ -51,8 +51,8 @@
                     </div>
                   </div>
               </div>
-              <div class="col-lg-8 d-flex align-items-center justify-content-center">
-                <div class="align-self-center">
+              <div class="col-lg-8 d-flex ">
+                <div class="">
                     <ul class="nav nav-tabs " id="myTab" role="tablist">
                         <li class="nav-item " role="presentation">
                           <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Add Car</button>
@@ -60,11 +60,13 @@
                         <li class="nav-item" role="presentation">
                           <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Fleet</button>
                         </li>
-                        
-                      </ul>
-                      <div class="tab-content" id="myTabContent">
-                        <div class="  h-50 tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                          <form  action="/addcar" method="POST" id="addCarForm"class="row g-3">
+                        <li class="nav-item" role="presentation">
+                          <button class="nav-link" id="profile-tab2" data-bs-toggle="tab" data-bs-target="#profile2" type="button" role="tab" aria-controls="profile" aria-selected="false">Service History</button>
+                        </li>  
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                      <div class="  h-50 tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <form  action="/addcar" method="POST" id="addCarForm"class="row g-3">
                             <div class="col-md-6">
                               <label class="form-label">Vendor</label>
                               <input type="text" class="form-control" id="vendor" name="vendor">
@@ -102,18 +104,30 @@
                               <button type="button"  data-toggle="modal" data-target="#exampleModalCenter" id="buttonCar"  class="btn btn-danger">Add Car</button>
                             </div>
                           
-                          </form>         
-                        </div>
-                        <div class=" h-50 tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                           <table class="table col-lg-12 table-striped">
-                                <tbody id="cars">
+                        </form>         
+                      </div>
+                      <div class="  h-50 tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                           <table class="  table table-striped ">
+                                <tbody class="" id="cars">
                                     
                                 </tbody>
                            </table>
                          
                          
                         </div>
-                             
+                        <div class=" h-50 tab-pane fade" id="profile2" role="tabpanel" aria-labelledby="profile-tab">
+                          <label class="form-label">License Plate</label>
+                          <select id="historyPlate" class="form-select form-select-md License " aria-label=".form-select-md example">
+                            
+                            
+                          </select>
+                          <table class="table col-lg-12 table-striped">
+                            <tbody id="History">
+                                
+                            </tbody>
+                          </table>
+                        
+                       </div>
                       </div>
                   </div>
               </div> 

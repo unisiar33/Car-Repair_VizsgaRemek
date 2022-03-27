@@ -27,7 +27,7 @@ function load() {
 document.getElementById("profile-tab").onclick= function(e) {
     e.preventDefault();
     const url = 'http://localhost:5050/fleet';
-    const table = document.getElementById("cars");
+    const table = document.getElementById("cars")
     const token = 'Bearer: ' + sessionStorage.token
     fetch(url, {
         method: 'GET',
@@ -37,12 +37,14 @@ document.getElementById("profile-tab").onclick= function(e) {
     })
         .then((response) => response.json())
         .then(json => {
-            table.innerHTML = "<tr><th>Vendor</th><th>Type</th><th>License Plate</th><th>VIN Number</th><th>Fuel</th><th>Power</th><th>Delete</th></tr>";
+            table.innerHTML = "<tr><th>Vendor</th><th>Type</th><th>License Plate</th><th>VIN Number</th><th>Fuel</th><th>Power</th><th>Delete</th><th>Book service</th></tr>";
             json.forEach(car => {
                 table.innerHTML += "<tr><td>" + car.vendor + "</td><td>" + car.Type + "</td>"
                     + "</td><td>" + car.LicensePlate + "</td><td>" + car.VIN_number + "</td><td>" + car.Fuel + "</td><td>" + car.Power + "</td>"
                     + '<td><button class="button btn btn-danger text-white" '
-                    + 'onclick="torol()">Delete</button></td></tr>'
+                    + 'onclick="deletecar('+ car.carId + ')">Delete</button></td>'
+                    + '<td><button class="button btn btn-success text-white" '
+                    + 'onclick="servicecar('+ car.carId + ')">Book an appoitment</button></td></tr>'
             });
         })
         .catch(err => console.log(err));
@@ -79,10 +81,72 @@ document.getElementById("buttonCar").onclick= function(e) {
         document.getElementById("addCarForm").reset();
 }
 
+// Törölni az autót a flottából
+function deletecar(carId) {
+    if (confirm("Are you sure to delete this car from your Fleet?")) {
+        fetch('http://localhost:5050/fleet/deletecar/' + carId, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': token
+            }
+        })
+            .then(res => {
+                document.location = "user.html"
+            })
+            .catch(err => console.log(err));
+    }
+}
+
+
+// Szervizbe egy találkozó regisztrálása
+function servicecar(carId) {
+    const token = 'Bearer: ' + sessionStorage.token
+    if (confirm("Are you sure to book an service appoitment for this car?")) {
+        fetch('http://localhost:5050/service/' + carId, {
+            method: 'POST',
+            headers: {
+                
+                'Authorization': token
+            }
+           
+        })
+            .then(res => {
+                alert("Service appoitment registrated");
+            })
+            .catch(err => console.log(err));
+    }
+}
+
+
+// Szerviz bejegyzésekhez rendszám választás ( autó )
+
+document.getElementById("profile-tab2").onclick= function (e) {
+    e.preventDefault;
+    const url = 'http://localhost:5050/history';
+    const select = document.getElementById("historyPlate");
+    select.innerHTML="";
+    const token = 'Bearer: ' + sessionStorage.token
+    fetch(url, {
+        method: 'GET',
+        headers: {
+            'Authorization': token
+        }
+    })
+        .then((response) => response.json())
+        .then(json => {
+            json.forEach(car => {
+                
+                select.innerHTML += "<option value="+ car.LicensePlate +">"+ car.LicensePlate+"</option>"
+                    
+            });
+        })
+        .catch(err => console.log(err));
+}
+
 
 function logout() {
     delete sessionStorage.token;
-    document.location = "index.html";
+    document.location = "login.html";
   }
 
 
