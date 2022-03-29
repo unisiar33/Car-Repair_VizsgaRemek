@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2022. Már 26. 08:11
+-- Létrehozás ideje: 2022. Már 29. 14:23
 -- Kiszolgáló verziója: 10.4.21-MariaDB
 -- PHP verzió: 8.0.12
 
@@ -82,7 +82,8 @@ INSERT INTO `fleet` (`carId`, `userId`, `Vendor`, `Type`, `LicensePlate`, `VIN_n
 (2, 1, 'Audi', 'A3 Sportback', 'FJO-384', '1HGBH41JXMN109186', 'gas', 1789, 110),
 (8, 14, 'Audi', 'S8', 'MIR-002', 'WVFT00021212FEG1134', 'gasoline', 4188, 399),
 (9, 2, 'Peugeot', '307 Break', 'IMN 624', 'FR307161234NFUTU5121424535', 'Gasoline', 1596, 110),
-(23, 2, 'Skoda', 'Octavia', 'PYU632', 'CZ1111TFSI46546782', 'gasoline', 1374, 150);
+(23, 2, 'Skoda', 'Octavia', 'PYU632', 'CZ1111TFSI46546782', 'gasoline', 1374, 150),
+(26, 2, 'Alfa Romeo', '156', 'JTD865', 'IT1323245JTD198V2321425356', 'Diesel', 1896, 85);
 
 -- --------------------------------------------------------
 
@@ -92,6 +93,7 @@ INSERT INTO `fleet` (`carId`, `userId`, `Vendor`, `Type`, `LicensePlate`, `VIN_n
 
 CREATE TABLE `worksheet` (
   `ticketid` int(11) NOT NULL,
+  `Jstatus` int(20) NOT NULL DEFAULT 0,
   `carid` int(11) NOT NULL,
   `userid` int(11) NOT NULL,
   `dateStart` date NOT NULL,
@@ -102,7 +104,7 @@ CREATE TABLE `worksheet` (
   `mileage` int(11) NOT NULL,
   `Parts` text COLLATE utf8mb4_hungarian_ci NOT NULL,
   `TotalSum` int(11) NOT NULL,
-  `mechanic` int(11) NOT NULL,
+  `mechanic` text COLLATE utf8mb4_hungarian_ci NOT NULL,
   `workhours` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
@@ -110,8 +112,10 @@ CREATE TABLE `worksheet` (
 -- A tábla adatainak kiíratása `worksheet`
 --
 
-INSERT INTO `worksheet` (`ticketid`, `carid`, `userid`, `dateStart`, `dateEnd`, `Problem`, `jobType`, `jobDone`, `mileage`, `Parts`, `TotalSum`, `mechanic`, `workhours`) VALUES
-(1, 2, 1, '2022-02-20', '2022-02-20', 'olajcsere', 'önköltséges', 'igen', 112678, 'olaj 5-30\r\nolajszűrő\r\nlevegőszűrő\r\npollenszűrő', 40000, 1, 1);
+INSERT INTO `worksheet` (`ticketid`, `Jstatus`, `carid`, `userid`, `dateStart`, `dateEnd`, `Problem`, `jobType`, `jobDone`, `mileage`, `Parts`, `TotalSum`, `mechanic`, `workhours`) VALUES
+(2, 0, 9, 2, '0000-00-00', '0000-00-00', '', '', '', 0, '', 0, '0', 0),
+(15, 0, 23, 2, '0000-00-00', '0000-00-00', '', '', '', 0, '', 0, '0', 0),
+(16, 1, 26, 2, '2022-03-28', '2022-03-28', 'Futómű balra húz', 'General mechanics', 'Futómű beállítás', 171522, '--', 25623, 'Bill Right', 2);
 
 --
 -- Indexek a kiírt táblákhoz
@@ -153,13 +157,13 @@ ALTER TABLE `clients`
 -- AUTO_INCREMENT a táblához `fleet`
 --
 ALTER TABLE `fleet`
-  MODIFY `carId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `carId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT a táblához `worksheet`
 --
 ALTER TABLE `worksheet`
-  MODIFY `ticketid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ticketid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Megkötések a kiírt táblákhoz

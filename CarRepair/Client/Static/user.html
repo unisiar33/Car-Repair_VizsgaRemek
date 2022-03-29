@@ -64,7 +64,7 @@
                           <button class="nav-link" id="profile-tab2" data-bs-toggle="tab" data-bs-target="#profile2" type="button" role="tab" aria-controls="profile" aria-selected="false">Service History</button>
                         </li>  
                     </ul>
-                    <div class="tab-content" id="myTabContent">
+                    <div class=" w-100 tab-content" id="myTabContent">
                       <div class="  h-50 tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <form  action="/addcar" method="POST" id="addCarForm"class="row g-3">
                             <div class="col-md-6">
@@ -114,13 +114,25 @@
                            </table>
                          
                          
-                        </div>
+                      </div>
                         <div class=" h-50 tab-pane fade" id="profile2" role="tabpanel" aria-labelledby="profile-tab">
-                          <label class="form-label">License Plate</label>
-                          <select id="historyPlate" class="form-select form-select-md License " aria-label=".form-select-md example">
+                          <div class=" w-100 row d-flex align-items-center">
+                            <div class="col-md-4">
+                              <label class="form-label">License Plate</label>
+                            </div>  
+                            <div class="col-md-4"> 
+                                <select id="historyPlate" class="form-select form-select-md License " aria-label=".form-select-md example">
+                                  
+                                  
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                              <button id="btnHistory" class="d-inline btn btn-info">Search</button>
+                            </div>
                             
                             
-                          </select>
+                          </div>
+                           
                           <table class="table col-lg-12 table-striped">
                             <tbody id="History">
                                 

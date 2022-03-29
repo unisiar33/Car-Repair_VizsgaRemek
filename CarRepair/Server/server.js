@@ -191,8 +191,8 @@ app.get("/service", authenticateToken, function (req, res) {
 
 // Munkalap kitöltés
 
-app.post("/service/worksheet", authenticateToken, function (req, res) {
-    const q = "UPDATE worksheet SET Jstatus=1 WHERE ticketid=? "
+app.post("/worksheet", authenticateToken, function (req, res) {
+    const q = "UPDATE worksheet SET Jstatus='1', dateStart=?, dateEnd=?, workhours=?,jobType=?,mileage=?,mechanic=?,Problem=?,jobDone=?,Parts=?,TotalSum=? WHERE ticketid=? "
     pool.query(q, 
     [
     req.body.startDate,
@@ -216,7 +216,22 @@ app.post("/service/worksheet", authenticateToken, function (req, res) {
     });
 })
 
+// Összes munkalap keresés
 
+app.get("/servicehistory", authenticateToken, function (req, res) {
+    const q = "SELECT worksheet.ticketId, clients.name, worksheet.jobType, fleet.vendor,fleet.type,fleet.Licenseplate, worksheet.mileage, "
+            +" worksheet.dateStart,worksheet.workhours, worksheet.problem, worksheet.jobDone, worksheet.mechanic, worksheet.parts, "
+            +" worksheet.totalSum "
+            +" FROM worksheet JOIN fleet ON fleet.carid=worksheet.carid"
+            +" JOIN clients ON clients.userId = worksheet.userId;";
+    pool.query(q, function (error, results) {
+        if (!error) {
+            res.send(results);
+        } else {
+            res.send(error);
+        }
+    }); 
+});
 
 //Autó szerviz története
 
