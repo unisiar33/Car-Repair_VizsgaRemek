@@ -23,7 +23,7 @@ function load() {
         .catch(err => console.log(err));
 }
 
-
+// Flotta lekéreés
 document.getElementById("profile-tab").onclick= function(e) {
     e.preventDefault();
     const url = 'http://localhost:5050/fleet';
@@ -51,7 +51,7 @@ document.getElementById("profile-tab").onclick= function(e) {
 }
 
 
-
+// Autó  hozzáadása
 document.getElementById("buttonCar").onclick= function(e) {
     e.preventDefault();
     const url = 'http://localhost:5050/addcar';
@@ -138,6 +138,38 @@ document.getElementById("profile-tab2").onclick= function (e) {
                 
                 select.innerHTML += "<option value="+ car.LicensePlate +">"+ car.LicensePlate+"</option>"
                     
+            });
+        })
+        .catch(err => console.log(err));
+}
+
+
+// Szerviz történet lekérés rednszám alapján
+
+document.getElementById("btnHistory").onclick= function(e) {
+    e.preventDefault();
+    const url = 'http://localhost:5050/history/car';
+    const table = document.getElementById("History");
+    const token = 'Bearer: ' + sessionStorage.token
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json;charset=utf-8',
+            'Authorization': token
+        },
+        body: JSON.stringify({
+            "LicensePlate": document.getElementById("historyPlate").value
+            
+        })
+    })
+        .then((response) => response.json())
+        .then(json => {
+            table.innerHTML = "<tr><th>Date</th><th>Mileage</th><th>history ID</th><th>Vendor</th><th>Type</th><th>License Plate</th><th>Job Type</th>"
+                            + "<th>Workhours</th><th>Problem</th><th>Resolution</th><th>Mechanic</th><th>Parts</th><th>Total</th></tr>";
+            json.forEach(history => {
+                table.innerHTML += "<tr><td>" + history.dateStart + "</td><td>" + history.mileage + "</td><td>" + history.ticketId + "</td><td>" + history.vendor + "</td><td>" + history.type + "</td><td>" + history.Licenseplate + "</td>"
+                + "<td>" + history.jobType + "</td><td>" + history.workhours + "</td><td>" + history.problem + "</td><td>" +history.jobDone + "</td><td>" + history.mechanic + "</td>"
+                + "<td>" + history.parts + "</td><td>" + history.totalSum + "</td></tr>"
             });
         })
         .catch(err => console.log(err));

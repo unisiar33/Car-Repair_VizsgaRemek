@@ -9,7 +9,8 @@ const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
 
 const mysql = require('mysql');
-var pool = mysql.createPool({
+
+const pool = mysql.createPool({
     host: process.env.HOST,
     port:process.env.PORT,
     user: process.env.USER,
@@ -23,27 +24,29 @@ var pool = mysql.createPool({
 app.post('/reg', function(req, res) {
     const { name,city,street,email,telephone, password } = req.body;
     const q1 = "SELECT * FROM clients WHERE name = ?";
-    pool.query(q1, [name],
+    pool.query(q1, [req.body.name],
         function (error, result) {
-            if (error)
-                res.status(500).send({ message: "Adatbázis hiba!" });
-            else if (result.length > 0) {
-                res.status(400).send({ message: "Már van ilyen nevű felhasználó!" })
-            } else {
+            if (error){
+                return res.status(500).json({ message: "Adatbázis hiba!" });
+            }
+            else if(result.length > 0) {
+                return res.status(400).json({ message: "Már van ilyen nevű felhasználó!" });
+            } 
+            else{ 
                 const hash = bcrypt.hashSync(password, 10);
                 const q2 = "INSERT INTO clients (name,city,street,email,telephone,password) VALUES (?, ?, ?, ?, ?, ?)";
                 pool.query(q2, [name,city,street,email,telephone, hash],
                     function (error, result) {
                         if (!error) {
                             
-                            res.status(201).send({ message: "Sikeres regisztráció" })
+                            res.status(201).json({ message: "Sikeres regisztráció" })
                             res.send(result);
 
                         } else {
                             res.send(error);
                         }
                     });
-            }
+                }
         });
 })
 
@@ -51,16 +54,16 @@ app.post('/reg', function(req, res) {
 app.post("/login", function (req, res) {
     const { name, password } = req.body;
     const q = "SELECT * FROM clients WHERE name = ?";
-    pool.query(q, [name],
+    pool.query(q, [req.body.name],
         function (error, result) {
             if (error)
-                res.status(500).send({ message: "Adatbázis hiba!" });
+                return res.status(500).json({ message: "Adatbázis hiba!" });
             else if (result.length == 0) {
-                res.status(400).send({ message: "Nincs ilyen nevű felhasználó!" })
+                return res.status(400).json({ message: "Nincs ilyen nevű felhasználó!" })
             } else {
                 user = JSON.parse(JSON.stringify(result[0]));
                 if (!bcrypt.compareSync(password, user.password))
-                    return res.status(401).send({ message: "Hibás jelszó!" })
+                    return res.status(401).json({ message: "Hibás jelszó!" })
                 const token = jwt.sign(user, process.env.TOKEN_SECRET, { expiresIn: 3600 })
                 res.json({ token: token, message: "Sikeres bejelentkezés." })
             }
@@ -245,6 +248,23 @@ app.get("/history", authenticateToken, function (req, res) {
         }
     });
 });
+
+// Autó szerviz története rendszámonként
+
+app.post("/history/car", authenticateToken, function (req, res) {
+    const q = "SELECT worksheet.dateStart,worksheet.mileage,worksheet.ticketId,  fleet.vendor,fleet.type,fleet.Licenseplate,worksheet.jobType, "
+    +" worksheet.workhours, worksheet.problem, worksheet.jobDone, worksheet.mechanic, worksheet.parts, worksheet.totalSum "
+    +" FROM worksheet JOIN fleet ON fleet.carid=worksheet.carid"
+    +" WHERE fleet.Licenseplate=?"
+    pool.query(q, [req.body.historyPlate],function (error, results) {
+        if (!error) {
+            res.send(results);
+        } else {
+            res.send(error);
+        }
+    });
+})
+
 
 
 app.listen(5050, () => console.log("Server started on port 5050"))
