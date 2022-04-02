@@ -84,6 +84,7 @@ document.getElementById("buttonCar").onclick= function(e) {
 // Törölni az autót a flottából
 function deletecar(carId) {
     if (confirm("Are you sure to delete this car from your Fleet?")) {
+        deleteservice(carId);
         fetch('http://localhost:5050/fleet/deletecar/' + carId, {
             method: 'DELETE',
             headers: {
@@ -95,6 +96,16 @@ function deletecar(carId) {
             })
             .catch(err => console.log(err));
     }
+}
+
+function deleteservice(carId) {
+        fetch('http://localhost:5050/fleet/deleteservice/' + carId, {
+            method: 'DELETE',
+            
+        })
+            .then(res => {
+            })
+            .catch(err => console.log(err));
 }
 
 
@@ -129,14 +140,15 @@ document.getElementById("profile-tab2").onclick= function (e) {
     fetch(url, {
         method: 'GET',
         headers: {
+            'Content-type': 'application/json;charset=utf-8',
             'Authorization': token
         }
     })
         .then((response) => response.json())
         .then(json => {
             json.forEach(car => {
-                
-                select.innerHTML += "<option value="+ car.LicensePlate +">"+ car.LicensePlate+"</option>"
+                i=0;
+                select.innerHTML += "<option value="+ car.carId +">"+ car.LicensePlate+"</option>"
                     
             });
         })
@@ -158,7 +170,7 @@ document.getElementById("btnHistory").onclick= function(e) {
             'Authorization': token
         },
         body: JSON.stringify({
-            "LicensePlate": document.getElementById("historyPlate").value
+            "historyPlate": document.getElementById("historyPlate").value
             
         })
     })

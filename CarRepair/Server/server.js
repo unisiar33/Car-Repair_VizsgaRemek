@@ -158,6 +158,18 @@ app.delete("/fleet/deletecar/:id", authenticateToken, function (req, res) {
     });
 });
 
+// Auto törlése a szerviztörténetből
+
+app.delete("/fleet/deleteservice/:id", function (req, res) {
+    const q = "DELETE FROM worksheet where carId=?";
+    pool.query(q, [req.params.id], function (error, results) {
+        if (!error) {
+            return
+        } else {
+           return
+        }
+    });
+});
 
 // Auto regisztrálása szervizre
 
@@ -255,7 +267,7 @@ app.post("/history/car", authenticateToken, function (req, res) {
     const q = "SELECT worksheet.dateStart,worksheet.mileage,worksheet.ticketId,  fleet.vendor,fleet.type,fleet.Licenseplate,worksheet.jobType, "
     +" worksheet.workhours, worksheet.problem, worksheet.jobDone, worksheet.mechanic, worksheet.parts, worksheet.totalSum "
     +" FROM worksheet JOIN fleet ON fleet.carid=worksheet.carid"
-    +" WHERE fleet.Licenseplate=?"
+    +" WHERE fleet.carId=?"
     pool.query(q, [req.body.historyPlate],function (error, results) {
         if (!error) {
             res.send(results);
