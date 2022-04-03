@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2022. Már 29. 14:23
+-- Létrehozás ideje: 2022. Ápr 03. 08:46
 -- Kiszolgáló verziója: 10.4.21-MariaDB
 -- PHP verzió: 8.0.12
 
@@ -54,7 +54,19 @@ INSERT INTO `clients` (`userid`, `name`, `City`, `Street`, `Email`, `Telephone`,
 (10, 'Vlagyimir Putin', 'Moszkva', 'Red Square 1', 'me.stalin@redalert.ru', '+1111111111111', '$2b$10$vDi8BYAQtfJe84mZWg43NuVUCQU1VQSdyoGqghuzV.jVjUeVdKvb2'),
 (11, 'Joe Bidden', 'DC ', 'White street 1.', 'mrpresident@captainchaos.com', '+1 12345678987654321', '$2b$10$deh7iEkv4iCPLg19lk1Va.eYpZizShFcBEB.Z5b4qpBZXQ9qRBFMK'),
 (12, 'Admin', 'Budapest', 'Porcsinrózsa  utca', 'admin@admin.hu', '06202238986', '$2b$10$Kr.inXGiGyeneUi6EfhwTOfSndVzD49E4wFGuSGvowXKPK7fbI72W'),
-(14, 'Ken Rock', 'Los Angeles', 'Broken Dreams Boulvard 1', 'kenrock@monster.com', '+123456789', '$2b$10$5aUw2InBvDHiXsPJ28OXp.NdjnBKRqqbpesvvO3.tc.NPwDkEvnbu');
+(14, 'Ken Rock', 'Los Angeles', 'Broken Dreams Boulvard 1', 'kenrock@monster.com', '+123456789', '$2b$10$5aUw2InBvDHiXsPJ28OXp.NdjnBKRqqbpesvvO3.tc.NPwDkEvnbu'),
+(15, 'Arany János', 'Budapest', 'Arany János u.1', 'aranyjanos@petofi.hu', '0670232423526', '$2b$10$0zL16guOZs5h6NdebszBRev1Z.23.7q2.UfaeYzTYwaK2Gdi90XMm'),
+(16, 'Arany László', 'Budapest', 'Arany János u.1', 'aranyjanos@petofi.hu', '0670232423526', '$2b$10$l9uU0mpx4CLAqO/XtSUUOONDYAtTQ0LbZMAzYvMfwzXIg/QWy.R0y'),
+(17, 'Mekk Elek', 'Budapest', 'Ezermester 1.', 'akitudaztud@profi.hu', '0670226532423526', '$2b$10$A5Gi7FI04uRS0MV7xoE4De8aI2hajBs2.Knu/9GvFTzrnIKJRRGqG'),
+(18, 'Niki Lauda', 'Wien', 'Haubptstrasse 1', 'theone@ferrari.it', '004300065656', '$2b$10$RuKQJT27Cn1D8QKpYY0EA.ZQj4aboA9KK18XzJh1s2qxZiJFCmCPK'),
+(19, 'Michael Schumacher', 'Berlin', 'Haubptstrasse 1', 'thegreatest@ferrari.it', '004900065656', '$2b$10$MvgETnqa4I4.DIvrKGOWy.PCe6CpZ.b6NWw0v0AUk34YwrPLu1s/u'),
+(20, 'Mikka Hakinnen', 'Helsinki', 'Main street 56', 'snowmen@mclaren.co.uk', '008700065656', '$2b$10$UJ9auZx.aZLYcVWpG9eWKOEFtA5rQ9btXE/PqvIs/LpG5oqhlwffS'),
+(21, 'Reichard Tamás', 'Szentendre', 'Fő u. 134.', 'tamas.reichard@gmail.com', '+3620456789465', '$2b$10$au77eJG7mjx6sdcMZO2o3ux21YvHvti8NY6TlEpck5zTQ3kA/CMIK'),
+(22, 'Vágási Rita', 'Szentendre', 'Fő u. 134.', 'rita.vagasi@gmail.com', '+3620321456789', '$2b$10$cjrnYz4q2r0O0AVq1bycMOIBjZG8aW0gtFcIRfmQmJb5IMVOP2xRu'),
+(23, 'Vágási Jánosné', 'Diósd ', 'Gyár u 89.', 'gomba@freemail.hu', '+362012315464', '$2b$10$XTuJcKWD3o4DDEFrsMSeo.hc26l/O7K285I2viCKOW84L2r/gg9wm'),
+(24, 'Vágási János', 'Diósd ', 'Gyár u 89.', 'vagasiapa@gmail.com', '+362065454867', '$2b$10$x.ma7I8zaYPNU0g6At8My.CGsltL1TzXuhgeaKC8dHECQ0HWCvqeq'),
+(25, 'Molnár Attila', 'Érd', 'Sárd u. 86', 'attila.molnar.ablak@gmail.com', '+3670456478679', '$2b$10$YgSSYH3HeK./Q.Uc3r32iOkHav4clEgUCRDGfKADLFqrmhkGJ7Dg6'),
+(26, 'Kerekes Máté', 'Budapest', 'Enikő u. 112', 'mate.kerekes@gmail.com', '+3646789971', '$2b$10$hfPZgyBeyYeycJ7UZqgYleZGzyK.VcHracKj/v7zY6EUeOW6mumhC');
 
 -- --------------------------------------------------------
 
@@ -79,10 +91,7 @@ CREATE TABLE `fleet` (
 --
 
 INSERT INTO `fleet` (`carId`, `userId`, `Vendor`, `Type`, `LicensePlate`, `VIN_number`, `Fuel`, `CubicCapacity`, `Power`) VALUES
-(2, 1, 'Audi', 'A3 Sportback', 'FJO-384', '1HGBH41JXMN109186', 'gas', 1789, 110),
-(8, 14, 'Audi', 'S8', 'MIR-002', 'WVFT00021212FEG1134', 'gasoline', 4188, 399),
 (9, 2, 'Peugeot', '307 Break', 'IMN 624', 'FR307161234NFUTU5121424535', 'Gasoline', 1596, 110),
-(23, 2, 'Skoda', 'Octavia', 'PYU632', 'CZ1111TFSI46546782', 'gasoline', 1374, 150),
 (26, 2, 'Alfa Romeo', '156', 'JTD865', 'IT1323245JTD198V2321425356', 'Diesel', 1896, 85);
 
 -- --------------------------------------------------------
@@ -114,7 +123,6 @@ CREATE TABLE `worksheet` (
 
 INSERT INTO `worksheet` (`ticketid`, `Jstatus`, `carid`, `userid`, `dateStart`, `dateEnd`, `Problem`, `jobType`, `jobDone`, `mileage`, `Parts`, `TotalSum`, `mechanic`, `workhours`) VALUES
 (2, 0, 9, 2, '0000-00-00', '0000-00-00', '', '', '', 0, '', 0, '0', 0),
-(15, 0, 23, 2, '0000-00-00', '0000-00-00', '', '', '', 0, '', 0, '0', 0),
 (16, 1, 26, 2, '2022-03-28', '2022-03-28', 'Futómű balra húz', 'General mechanics', 'Futómű beállítás', 171522, '--', 25623, 'Bill Right', 2);
 
 --
@@ -151,19 +159,19 @@ ALTER TABLE `worksheet`
 -- AUTO_INCREMENT a táblához `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT a táblához `fleet`
 --
 ALTER TABLE `fleet`
-  MODIFY `carId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `carId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT a táblához `worksheet`
 --
 ALTER TABLE `worksheet`
-  MODIFY `ticketid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `ticketid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Megkötések a kiírt táblákhoz

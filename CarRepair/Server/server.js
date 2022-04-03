@@ -40,7 +40,7 @@ app.post('/reg', function(req, res) {
                         if (!error) {
                             
                             res.status(201).json({ message: "Sikeres regisztráció" })
-                            res.send(result);
+                            
 
                         } else {
                             res.send(error);
