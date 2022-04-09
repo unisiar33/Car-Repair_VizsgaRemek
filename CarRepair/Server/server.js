@@ -171,6 +171,19 @@ app.delete("/fleet/deleteservice/:id", function (req, res) {
     });
 });
 
+// Auto törlése a szerviztörténetből
+
+app.delete("/fleet/deleteticket/:id", function (req, res) {
+    const q = "DELETE FROM worksheet where ticketid=?";
+    pool.query(q, [req.params.id], function (error, results) {
+        if (!error) {
+            return
+        } else {
+           return
+        }
+    });
+});
+
 // Auto regisztrálása szervizre
 
 app.post("/service/:id", authenticateToken, function (req, res) {

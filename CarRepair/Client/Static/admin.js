@@ -22,7 +22,7 @@ function load () {
               table.innerHTML += "<tr><td>" + ticket.ticketId + "</td><td>" + ticket.name + "</td>"
                   + "</td><td>" + ticket.vendor + "</td><td>" + ticket.type + "</td><td>" + ticket.Licenseplate + "</td><td>" + ticket.vin_number + "</td>"
                   + '<td><button class="button btn btn-danger text-white" '
-                  + 'onclick="deletecar('+ ticket.ticketId + ')">Delete</button></td></tr>'
+                  + 'onclick="deleteticket('+ ticket.ticketId + ')">Delete</button></td></tr>'
           });
       })
       .catch(err => console.log(err));
@@ -63,7 +63,9 @@ document.getElementById("buttonTicket").onclick= function(e) {
         
         .catch(err => console.log(err));
         document.getElementById("worksheetForm").reset();
-        alert("Worksheet has been filled out. Job status has changed to done! ")
+        alert("Worksheet has been filled out. Job status has changed to done! ");
+        load();
+        loadhistory();
     }
 }
 
@@ -93,6 +95,24 @@ function loadhistory () {
         })
         .catch(err => console.log(err));
       }
+
+
+
+
+//Ticket törlése
+
+function deleteticket(ticketId){
+        fetch('http://localhost:5050/fleet/deleteticket/' + ticketId, {
+            method: 'DELETE',
+            
+        })
+            .then(res => {
+            })
+            .catch(err => console.log(err));
+            load();
+}
+
+
 
 //Logout funkció
 
