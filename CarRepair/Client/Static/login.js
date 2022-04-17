@@ -16,11 +16,15 @@ document.getElementById("button").onclick = function (e) {
             ok = response.ok
             return response.json()    
         })
+       
         .then(json => {
             sessionStorage.token = json.token
+            document.getElementById("uzenet").innerHTML = json.message;
+            if (ok){
+                if (document.getElementById("name").value=="Admin") document.location = "admin.html";
+                else document.location="user.html";
+            }
             
-            if (document.getElementById("name").value=="Admin") document.location = "admin.html";
-            else document.location="user.html";
         })
         .catch(err => console.log(err));
 }
