@@ -20,7 +20,7 @@ const pool = mysql.createPool({
 
 
 
-// regisztráció
+// Regisztráció
 app.post('/reg', function(req, res) {
     const { name,city,street,email,telephone, password } = req.body;
     const q1 = "SELECT * FROM clients WHERE name = ?";
@@ -50,7 +50,7 @@ app.post('/reg', function(req, res) {
         });
 })
 
-// bejelentkezés
+// Bejelentkezés
 app.post("/login", function (req, res) {
     const { name, password } = req.body;
     const q = "SELECT * FROM clients WHERE name = ?";
@@ -74,7 +74,7 @@ app.post("/login", function (req, res) {
 
 
 
-// token ellenőrzése middleware-rel (forma: BEARER token)
+// Token ellenőrzése middleware-rel (forma: BEARER token)
 function authenticateToken(req, res, next) {
     const authHeader = req.headers['authorization']
     const token = authHeader && authHeader.split(' ')[1]
@@ -92,7 +92,7 @@ function authenticateToken(req, res, next) {
 
 
 
-//user adatai
+//Felhasználói adatok lekérése
 app.get("/user", authenticateToken, function (req, res) {
     const q = "SELECT name, city,street,telephone,email "
             + "FROM clients WHERE name=?";
@@ -171,7 +171,7 @@ app.delete("/fleet/deleteservice/:id", function (req, res) {
     });
 });
 
-// Auto törlése a szerviztörténetből
+// Ticket törlése a szerviztörténetből
 
 app.delete("/fleet/deleteticket/:id", function (req, res) {
     const q = "DELETE FROM worksheet where ticketid=?";
@@ -261,7 +261,7 @@ app.get("/servicehistory", authenticateToken, function (req, res) {
     }); 
 });
 
-//Autó szerviz története
+//Felhasználó autó szerviz története-rendszámok lekérdezése legördülő listához
 
 app.get("/history", authenticateToken, function (req, res) {
     const q = "SELECT  LicensePlate,carId FROM Fleet where userid=?";
